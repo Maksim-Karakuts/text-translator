@@ -1,6 +1,8 @@
 package com.tinkoff.maksim.karakuts.text.translator;
 
 import com.tinkoff.maksim.karakuts.text.translator.dto.mymemory.TranslationResponse;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.scheduling.annotation.Async;
@@ -12,6 +14,8 @@ import java.util.concurrent.CompletableFuture;
 
 @Service
 public class MyMemoryExternalTranslator implements ExternalTranslator {
+    private static final Logger LOGGER =
+        LoggerFactory.getLogger(MyMemoryExternalTranslator.class);
     private static final String MY_MEMORY_API_URL =
         "https://api.mymemory.translated" +
             ".net/get?q=%s&langpair=%s|%s&de=vasilian3000@yandex.ru";
@@ -27,6 +31,8 @@ public class MyMemoryExternalTranslator implements ExternalTranslator {
     public CompletableFuture<String> translateWord(String word,
                                                    String initialLanguage,
                                                    String targetLanguage) {
+        LOGGER.debug("Translating '{}' from {} to {}", word, initialLanguage,
+            targetLanguage);
         String apiUrl = String.format(
             MY_MEMORY_API_URL, word, initialLanguage, targetLanguage);
         Optional<TranslationResponse> response = Optional.ofNullable(
