@@ -2,14 +2,13 @@ package com.tinkoff.maksim.karakuts.text.translator;
 
 import com.tinkoff.maksim.karakuts.text.translator.dto.InputText;
 import com.tinkoff.maksim.karakuts.text.translator.dto.TranslatedText;
+import java.util.concurrent.CompletableFuture;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
-
-import java.util.concurrent.CompletableFuture;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
@@ -35,7 +34,8 @@ class TranslationServiceImplTest {
     void translate_whenTwoWords_thenReturnTwoTranslatedWords() {
         InputText inputText = new InputText("start end", "en", "ru");
         TranslatedText expectedTranslatedText =
-            new TranslatedText("начало конец");
+            new TranslatedText();
+        expectedTranslatedText.setResultText("начало конец");
 
         doReturn(CompletableFuture.completedFuture("начало")).when(translator)
             .translateWord("start", "en", "ru");
@@ -45,6 +45,7 @@ class TranslationServiceImplTest {
         TranslatedText actualTranslatedText =
             translationService.translate(inputText);
 
-        assertEquals(expectedTranslatedText, actualTranslatedText);
+        assertEquals(expectedTranslatedText.getResultText(),
+            actualTranslatedText.getResultText());
     }
 }

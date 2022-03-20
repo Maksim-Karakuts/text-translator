@@ -2,8 +2,8 @@ DROP TABLE IF EXISTS TRANSLATION;
 CREATE TABLE TRANSLATION
 (
     id              INT AUTO_INCREMENT PRIMARY KEY,
-    initial_text    VARCHAR(1000) NOT NULL,
-    translated_text VARCHAR(1000),
+    initial_text    VARCHAR(2000) NOT NULL,
+    translated_text VARCHAR(2000),
     from_language   VARCHAR(2)    NOT NULL,
     to_language     VARCHAR(2)    NOT NULL,
     request_time    TIMESTAMP     NOT NULL,
