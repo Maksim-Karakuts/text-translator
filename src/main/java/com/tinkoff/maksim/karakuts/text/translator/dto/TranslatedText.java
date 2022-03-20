@@ -1,13 +1,15 @@
 package com.tinkoff.maksim.karakuts.text.translator.dto;
 
-import lombok.AllArgsConstructor;
+import java.util.List;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class TranslatedText {
-    private String text;
+    private String initialText;
+    private List<String> initialWords;
+    private String initialLanguage;
+    private String targetLanguage;
+    private String resultText;
+    private List<String> resultWords;
 }
 

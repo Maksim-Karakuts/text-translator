@@ -10,7 +10,7 @@ function translate() {
         data: JSON.stringify(initialText),
         contentType: 'application/json;charset=UTF-8',
         success: function (data) {
-            $('.translatedText').val(data.text);
+            $('.translatedText').val(data.translatedText);
         }
     });
 }
