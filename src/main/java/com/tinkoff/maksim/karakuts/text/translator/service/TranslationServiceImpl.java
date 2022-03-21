@@ -1,4 +1,4 @@
-package com.tinkoff.maksim.karakuts.text.translator;
+package com.tinkoff.maksim.karakuts.text.translator.service;
 
 import com.tinkoff.maksim.karakuts.text.translator.dto.InputText;
 import com.tinkoff.maksim.karakuts.text.translator.dto.TranslatedText;
@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
+import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class TranslationServiceImpl implements TranslationService {
     }
 
     @Override
-    public TranslatedText translate(InputText text) {
+    public TranslatedText translate(@Valid InputText text) {
         LOGGER.debug("Translating text '{}'", text);
         String initialText = text.getText();
         List<String> initialWords =
@@ -53,22 +54,26 @@ public class TranslationServiceImpl implements TranslationService {
         translatedWordFutures.forEach(CompletableFuture::join);
 
         List<String> translatedWords =
-            translatedWordFutures.stream().map(future -> {
-                try {
-                    return future.get();
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    throw new ExternalApiException(
-                        "Getting translation from external API was " +
-                            "interrupted", e);
-                } catch (ExecutionException e) {
-                    throw new ExternalApiException(
-                        "Can't get word translation from external API", e);
-                }
-            }).collect(Collectors.toList());
+            translatedWordFutures.stream()
+                .map(this::getFutureTranslatedWord)
+                .collect(Collectors.toList());
 
         LOGGER.debug("Translated words {}", translatedWords);
         return translatedWords;
+    }
+
+    private String getFutureTranslatedWord(CompletableFuture<String> future) {
+        try {
+            return future.get();
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new ExternalApiException(
+                "Getting translation from external API was " +
+                    "interrupted", e);
+        } catch (ExecutionException e) {
+            throw new ExternalApiException(
+                "Can't get word translation from external API", e);
+        }
     }
 
     private TranslatedText initTranslatedText(InputText inputText,

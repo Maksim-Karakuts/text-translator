@@ -5,15 +5,18 @@ import com.tinkoff.maksim.karakuts.text.translator.dto.TranslatedText;
 import com.tinkoff.maksim.karakuts.text.translator.dto.Translation;
 import com.tinkoff.maksim.karakuts.text.translator.dto.TranslationData;
 import com.tinkoff.maksim.karakuts.text.translator.repository.TranslationRepository;
+import com.tinkoff.maksim.karakuts.text.translator.service.TranslationService;
 import java.time.LocalDateTime;
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
