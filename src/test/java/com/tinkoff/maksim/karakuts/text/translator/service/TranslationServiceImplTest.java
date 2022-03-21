@@ -1,7 +1,9 @@
-package com.tinkoff.maksim.karakuts.text.translator;
+package com.tinkoff.maksim.karakuts.text.translator.service;
 
 import com.tinkoff.maksim.karakuts.text.translator.dto.InputText;
 import com.tinkoff.maksim.karakuts.text.translator.dto.TranslatedText;
+import com.tinkoff.maksim.karakuts.text.translator.service.ExternalTranslator;
+import com.tinkoff.maksim.karakuts.text.translator.service.TranslationServiceImpl;
 import java.util.concurrent.CompletableFuture;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

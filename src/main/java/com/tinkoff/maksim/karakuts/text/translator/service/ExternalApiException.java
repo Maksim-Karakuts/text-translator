@@ -1,9 +1,10 @@
-package com.tinkoff.maksim.karakuts.text.translator;
+package com.tinkoff.maksim.karakuts.text.translator.service;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
+@ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR,
+    reason = "Error occurred while reaching external translation API")
 public class ExternalApiException extends RuntimeException {
     public ExternalApiException() {
     }

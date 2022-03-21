@@ -1,4 +1,4 @@
-package com.tinkoff.maksim.karakuts.text.translator;
+package com.tinkoff.maksim.karakuts.text.translator.service;
 
 import com.tinkoff.maksim.karakuts.text.translator.dto.mymemory.TranslationResponse;
 import java.util.Optional;

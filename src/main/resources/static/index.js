@@ -15,7 +15,10 @@ function translate() {
             data: JSON.stringify(initialText),
             contentType: 'application/json;charset=UTF-8',
             success: function (data) {
-                $('.translatedText').val(data.translatedText);
+                $('.translatedText').text(data.translatedText);
+            },
+            error: function (jqXhr) {
+                errorDiv.text(JSON.parse(jqXhr.responseText).message);
             }
         });
     } else {
