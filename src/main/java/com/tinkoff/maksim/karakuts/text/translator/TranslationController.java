@@ -7,6 +7,7 @@ import com.tinkoff.maksim.karakuts.text.translator.dto.TranslationData;
 import com.tinkoff.maksim.karakuts.text.translator.repository.TranslationRepository;
 import java.time.LocalDateTime;
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,7 @@ public class TranslationController {
     }
 
     @PostMapping
-    public Translation translate(@RequestBody InputText text,
+    public Translation translate(@Valid @RequestBody InputText text,
                                  HttpServletRequest request) {
         LOGGER.debug("User requests translation for {}", text);
         LocalDateTime requestDateTime = LocalDateTime.now();
@@ -42,9 +43,8 @@ public class TranslationController {
             translationData =
             initTranslationData(text,
                 translatedText, requestDateTime, clientIpAddress);
-        Translation translation = translationRepository.add(translationData);
 
-        return translation;
+        return translationRepository.add(translationData);
     }
 
     private TranslationData initTranslationData(InputText inputText,
