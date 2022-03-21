@@ -9,14 +9,38 @@
 </head>
 <body>
 <div class="main">
-    <label>
+    <label style="text-align: left">Input text:<br>
         <textarea class="initialText" rows="4" cols="100"></textarea>
     </label>
     <br>
+    <label>Input language:
+        <select class="initialLanguage">
+            <option selected value="EN">English</option>
+            <option value="RU">Russian</option>
+            <option value="DE">German</option>
+            <option value="FR">French</option>
+            <option value="IT">Italian</option>
+            <option value="ES">Spanish</option>
+        </select>
+    </label>
+    <br>
+    <br>
     <button class="translateButton">Translate</button>
     <br>
-    <label>
+    <br>
+    <label>Translated text:<br>
         <textarea class="translatedText" rows="4" cols="100"></textarea>
+    </label>
+    <br>
+    <label>Target language:
+        <select class="targetLanguage">
+            <option value="EN">English</option>
+            <option selected value="RU">Russian</option>
+            <option value="DE">German</option>
+            <option value="FR">French</option>
+            <option value="IT">Italian</option>
+            <option value="ES">Spanish</option>
+        </select>
     </label>
     <div class="error"></div>
 </div>
