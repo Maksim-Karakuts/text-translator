@@ -1,0 +1,1 @@
+web: java -jar -Dfile.encoding=UTF-8 translator-0.0.1-SNAPSHOT.jar
