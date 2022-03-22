@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.tinkoff.maksim.karakuts.text.translator</groupId>
     <artifactId>translator</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>translator</name>
     <description>Test text translator project for Tinkoff</description>
     <properties>
